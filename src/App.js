@@ -1,42 +1,45 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import axios from 'axios'
-
-const url = "https://api.nytimes.com/svc/movies/v2"
-const api_key = "0TYh7SlLme99I2NTyZ0Avv9Yk6i9Wv3t"
-const end_point = "/reviews/picks.json?"
+import MovieList from './MovieList'
+import movieService from './service/movieService'
+import Button from 'react-bootstrap/Button'
 
 const App = () => {
     const [data, setData] = useState([])
-    useEffect(() => {
-        axios.get(url + end_point + `&api-key=${api_key}`)
-            .then(response => {
-                setData(response.data.results)
-            })
+
+    useEffect(async () => {
+        const newData = await movieService.getMovie('')
+        setData(newData)
     }, [])
+
+    const orderPublic = async event => {
+        const newData = await movieService.getMovie('&order=by-publication-date')
+        setData(newData)
+    }
+
+    const orderOpening = async event => {
+        const newData = await movieService.getMovie('&order=by-opening-date')
+        setData(newData)
+    }
 
     return (
         <div>
-            <h1 style={{textAlign: "center"}}>BingingTimes finds you the best movie from NYtimes</h1>
-            <ol>
-                {data.map(movie => {
-                    if (movie.display_title.localeCompare("") !== 0) {
-                        return (
-                            <li key={movie.display_title}>
-                                <p>{movie.display_title}</p>
-                                <p>{movie.headline}</p>
-                                <img src={movie.multimedia.src} alt="movie scene" />
-                                <p style={{color: "grey"}}>{movie.summary_short}</p>
-                                For more info about the movie, click 
-                                <a href={movie.link.url}> link</a>
-                            </li>
-                        )
-                    }
-                })}
+            <Button variant="primary"> hi </Button>
+            <Button variant="warning"> HI </Button>
+            <button> hi </button>
 
-            </ol>
+            <h1 style={{textAlign: "center"}}>BingingTimes finds you the best movie from NYtimes</h1>
+            Order by
+            <button type="button" onClick={orderPublic}> publication date</button>
+            <button type="button" onClick={orderOpening}> opening date</button>
+            <MovieList data={data} />
         </div>
     )
 }
 
 export default App;
+
+/*
+ * Things to add:
+ * CSS Styling with Bootstrap
+ */
