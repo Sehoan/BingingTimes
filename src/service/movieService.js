@@ -10,4 +10,8 @@ const getMovie = async query => {
     return response.data.results
 }
 
-export default { getMovie }
+const requests = {
+    getMovie
+}
+
+export default requests

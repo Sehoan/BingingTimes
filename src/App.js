@@ -10,6 +10,7 @@ const App = () => {
     useEffect(async () => {
         const newData = await movieService.getMovie('')
         setData(newData)
+        console.log(newData)
     }, [])
 
     const orderPublic = async event => {
@@ -24,12 +25,8 @@ const App = () => {
 
     return (
         <div>
-            <Button variant="primary"> hi </Button>
-            <Button variant="warning"> HI </Button>
-            <button> hi </button>
-
             <h1 style={{textAlign: "center"}}>BingingTimes finds you the best movie from NYtimes</h1>
-            Order by
+            Order by 
             <button type="button" onClick={orderPublic}> publication date</button>
             <button type="button" onClick={orderOpening}> opening date</button>
             <MovieList data={data} />
