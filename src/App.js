@@ -12,7 +12,7 @@ const App = () => {
     useEffect(async () => {
         const newData = await movieService.getMovie(query)
         setData(newData)
-    }, [])
+    }, [query])
 
     const headerStyle = {
         textAlign: "center",
@@ -33,9 +33,3 @@ const App = () => {
 }
 
 export default App;
-
-/*
- * Things to add:
- * when selecting different page, ordering property is overriden
- * lift state, show in OrderToggle, up so the value can be ussed in pageNumber
- */

@@ -15,8 +15,6 @@ const OrderToggle = ({ query, setQuery, setData }) => {
             newQuery = query + '&order=by-publication-date'
         }
         setQuery(newQuery)
-        const newData = await movieService.getMovie(newQuery)
-        setData(newData)
         setShow(true)
     }
 
@@ -28,8 +26,6 @@ const OrderToggle = ({ query, setQuery, setData }) => {
             newQuery = query + '&order=by-opening-date'
         }
         setQuery(newQuery)
-        const newData = await movieService.getMovie(newQuery)
-        setData(newData)
         setShow(false)
     }
 

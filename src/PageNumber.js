@@ -1,8 +1,11 @@
 import React from 'react'
+import {useState} from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 import movieService from './service/movieService'
 
 const PageNumber = ({ query, setQuery, setData }) => {
+    const [activePage, setActivePage] = useState(1)
+
     const pages = [1,2,3,4]
     const openPage = async event => {
         let newQuery = ''
@@ -13,14 +16,13 @@ const PageNumber = ({ query, setQuery, setData }) => {
             newQuery = query + `&offset=${(pageSelected-1)*20}`
         }
         setQuery(newQuery)
-        const newData = await movieService.getMovie(newQuery)
-        setData(newData)
+        setActivePage(pageSelected)
     }
 
     return (
         <Pagination style={{paddingLeft:"1rem"}}>
             {pages.map(pageNumber => (
-                <Pagination.Item key={pageNumber} onClick={openPage}>
+                <Pagination.Item active={pageNumber===activePage} key={pageNumber} onClick={openPage}>
                     {pageNumber}
                 </Pagination.Item>
             ))}
