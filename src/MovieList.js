@@ -28,6 +28,8 @@ const MovieList = ({ data }) => {
                             </Media.Body>
                         </Media>
                     )
+                }else {
+                    return (null)
                 } 
             })}
 

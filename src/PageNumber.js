@@ -1,9 +1,8 @@
 import React from 'react'
 import {useState} from 'react'
 import Pagination from 'react-bootstrap/Pagination'
-import movieService from './service/movieService'
 
-const PageNumber = ({ query, setQuery, setData }) => {
+const PageNumber = ({ query, setQuery }) => {
     const [activePage, setActivePage] = useState(1)
 
     const pages = [1,2,3,4]

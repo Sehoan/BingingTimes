@@ -2,9 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import movieService from './service/movieService'
 
-const OrderToggle = ({ query, setQuery, setData }) => {
+const OrderToggle = ({ query, setQuery }) => {
     const [show, setShow] = useState(true) 
 
     const orderPublic = async event => {

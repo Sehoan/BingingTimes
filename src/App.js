@@ -9,9 +9,14 @@ const App = () => {
     const [data, setData] = useState([])
     const [query, setQuery] = useState('')
 
-    useEffect(async () => {
-        const newData = await movieService.getMovie(query)
-        setData(newData)
+    useEffect(() => {
+        const requestMovies = async() => {
+            const newData = await movieService.getMovie(query)
+            setData(newData)
+        }
+
+        requestMovies()
+
     }, [query])
 
     const headerStyle = {
@@ -24,9 +29,9 @@ const App = () => {
         <div>
             <div>
                 <h1 style={headerStyle}>BingingTimes finds you the best movie from NYtimes</h1>
-                <OrderToggle query={query} setQuery={setQuery} setData={setData} />
+                <OrderToggle query={query} setQuery={setQuery} />
                 <MovieList data={data} />
-                <PageNumber query={query} setQuery={setQuery} setData={setData} />
+                <PageNumber query={query} setQuery={setQuery} />
             </div>
         </div>
     )
