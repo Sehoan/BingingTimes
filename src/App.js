@@ -14,7 +14,6 @@ const App = () => {
             const newData = await movieService.getMovie(query)
             setData(newData)
         }
-
         requestMovies()
 
     }, [query])
