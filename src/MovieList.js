@@ -1,6 +1,7 @@
 import React from 'react'
 import Media from 'react-bootstrap/Media'
 import Image from 'react-bootstrap/Image'
+import Alert from 'react-bootstrap/Alert'
 
 const MovieList = ({ data }) => {
     return (
@@ -20,8 +21,10 @@ const MovieList = ({ data }) => {
                                 <h2>{movie.display_title}</h2>
                                 <h5>{movie.headline}</h5>
                                 <p style={{color: "grey"}}>{movie.summary_short}</p>
-                                For more info about the movie, click 
-                                <a href={movie.link.url}> link</a>
+                                <Alert variant="info" style={{width:"fit-content"}}>
+                                    For more info, click 
+                                    <Alert.Link href={movie.link.url}> link</Alert.Link>
+                                </Alert>
                             </Media.Body>
                         </Media>
                     )

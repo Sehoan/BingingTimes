@@ -4,17 +4,31 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import movieService from './service/movieService'
 
-const OrderToggle = ({ setData }) => {
+const OrderToggle = ({ query, setQuery, setData }) => {
     const [show, setShow] = useState(true) 
 
     const orderPublic = async event => {
-        const newData = await movieService.getMovie('&order=by-publication-date')
+        let newQuery = ''
+        if(query.includes('order')) {
+            newQuery = query.replace('opening','publication')
+        }else {
+            newQuery = query + '&order=by-publication-date'
+        }
+        setQuery(newQuery)
+        const newData = await movieService.getMovie(newQuery)
         setData(newData)
         setShow(true)
     }
 
     const orderOpening = async event => {
-        const newData = await movieService.getMovie('&order=by-opening-date')
+        let newQuery = ''
+        if(query.includes('order')) {
+            newQuery = query.replace('publication','opening')
+        }else {
+            newQuery = query + '&order=by-opening-date'
+        }
+        setQuery(newQuery)
+        const newData = await movieService.getMovie(newQuery)
         setData(newData)
         setShow(false)
     }
