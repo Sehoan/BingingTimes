@@ -26,7 +26,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://remotive.io/api",
   "browserslist": {
     "production": [
       ">0.2%",
